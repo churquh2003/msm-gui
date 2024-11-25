@@ -1,6 +1,15 @@
-<h1>Movie #<%= @the_movie.id %> details</h1>
+<h1>Movie #<%= @the_movie.id %> Details</h1>
 
 <a href="/movies">Go back</a>
+
+<hr>
+
+<form action="/update_movie/<%= @the_movie.id %>" method="post">
+  <label for="image_movie">Image</label>
+  <input type="text" id="image_movie" name="image_movie" value="<%= @the_movie.image %>">
+
+  <button type="submit">Update movie</button>
+</form>
 
 <hr>
 
@@ -11,22 +20,21 @@
   <dt>Year</dt>
   <dd><%= @the_movie.year %></dd>
 
-  <dt>Duration</dt>
-  <dd><%= @the_movie.duration %></dd>
-
   <dt>Description</dt>
   <dd><%= @the_movie.description %></dd>
+
+  <dt>Duration</dt>
+  <dd><%= @the_movie.duration %></dd>
 
   <dt>Image</dt>
   <dd><img src="<%= @the_movie.image %>" style="width:250px;"></dd>
 
   <dt>Director</dt>
   <dd>
-    <% if @the_director %>
-      <a href="/directors/<%= @the_director.id %>"><%= @the_director.name %></a>
+    <% if @the_movie.director_id %>
+      <%= Director.where(id: @the_movie.director_id).pluck(:name).first %>
     <% else %>
       Unknown
     <% end %>
   </dd>
 </dl>
-

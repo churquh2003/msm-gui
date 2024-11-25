@@ -1,24 +1,6 @@
-<h1>Director #<%= @the_director.id %> details</h1>
+<h1>Director #<%= @the_director.id %> Details</h1>
 
 <a href="/directors">Go back</a>
-
-<hr>
-
-<form action="/update_director/<%= @the_director.id %>" method="post">
-  <label for="name_director">Name</label>
-  <input type="text" name="name_director" id="name_director" value="<%= @the_director.name %>">
-
-  <label for="dob_director">Dob</label>
-  <input type="date" name="dob_director" id="dob_director" value="<%= @the_director.dob %>">
-
-  <label for="bio_director">Bio</label>
-  <input type="text" name="bio_director" id="bio_director" value="<%= @the_director.bio %>">
-
-  <label for="image_director">Image</label>
-  <input type="text" name="image_director" id="image_director" value="<%= @the_director.image %>">
-
-  <button>Update director</button>
-</form>
 
 <hr>
 
@@ -35,3 +17,15 @@
   <dt>Image</dt>
   <dd><img src="<%= @the_director.image %>" style="width:250px;"></dd>
 </dl>
+
+<hr>
+
+<h2>Filmography</h2>
+<ul>
+  <% @the_director.movies.each do |movie| %>
+    <li>
+      <%= movie.title %> 
+      (<a href="/movies/<%= movie.id %>">Show details</a>)
+    </li>
+  <% end %>
+</ul>

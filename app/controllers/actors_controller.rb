@@ -48,4 +48,15 @@ class ActorsController < ApplicationController
     actor.destroy
     redirect_to("/actors")
   end
+
+  def update_row
+    the_id = params.fetch("path_id")
+    actor = Actor.where({ :id => the_id }).at(0)
+    actor.name = params.fetch("name_actor")
+    actor.dob = params.fetch("dob_actor")
+    actor.bio = params.fetch("bio_actor")
+    actor.image = params.fetch("image_actor")
+    actor.save
+    redirect_to("/actors/#{actor.id}")
+  end
 end
