@@ -1,25 +1,37 @@
-<form action="/update_actor" method="post">
+<h1>Actor #<%= @the_actor.id %> details</h1>
+
+<a href="/actors">Go back</a>
+
+<hr>
+
+<form action="/update_actor/<%= @the_actor.id %>" method="post">
   <label for="name_actor">Name</label>
   <input type="text" name="name_actor" id="name_actor" value="<%= @the_actor.name %>">
 
-  <div>
-    <label for="dob_actor">Dob</label>
-    <input type="date" name="dob_actor" id="dob_actor" value="<%= @the_actor.dob %>">
-  </div>
+  <label for="dob_actor">Dob</label>
+  <input type="date" name="dob_actor" id="dob_actor" value="<%= @the_actor.dob %>">
 
-  <div>
-    <label for="bio_actor">Bio</label>
-    <input type="text" name="bio_actor" id="bio_actor" value="<%= @the_actor.bio %>">
-  </div>
+  <label for="bio_actor">Bio</label>
+  <input type="text" name="bio_actor" id="bio_actor" value="<%= @the_actor.bio %>">
 
-  <div>
-    <label for="image_actor">Image</label>
-    <input type="text" name="image_actor" id="image_actor" value="<%= @the_actor.image %>">
-  </div>
+  <label for="image_actor">Image</label>
+  <input type="text" name="image_actor" id="image_actor" value="<%= @the_actor.image %>">
 
-  <button type="submit">Update actor</button>
+  <button>Update actor</button>
 </form>
 
-<div>
-  <a href="/delete_actor/<%= @the_actor.id %>">Delete actor</a>
-</div>
+<hr>
+
+<dl>
+  <dt>Name</dt>
+  <dd><%= @the_actor.name %></dd>
+
+  <dt>Dob</dt>
+  <dd><%= @the_actor.dob %></dd>
+
+  <dt>Bio</dt>
+  <dd><%= @the_actor.bio %></dd>
+
+  <dt>Image</dt>
+  <dd><img src="<%= @the_actor.image %>" style="width:250px;"></dd>
+</dl>

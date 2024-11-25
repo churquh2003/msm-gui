@@ -1,25 +1,37 @@
-<form action="/update_director" method="post">
+<h1>Director #<%= @the_director.id %> details</h1>
+
+<a href="/directors">Go back</a>
+
+<hr>
+
+<form action="/update_director/<%= @the_director.id %>" method="post">
   <label for="name_director">Name</label>
   <input type="text" name="name_director" id="name_director" value="<%= @the_director.name %>">
 
-  <div>
-    <label for="dob_director">Dob</label>
-    <input type="date" name="dob_director" id="dob_director" value="<%= @the_director.dob %>">
-  </div>
+  <label for="dob_director">Dob</label>
+  <input type="date" name="dob_director" id="dob_director" value="<%= @the_director.dob %>">
 
-  <div>
-    <label for="bio_director">Bio</label>
-    <input type="text" name="bio_director" id="bio_director" value="<%= @the_director.bio %>">
-  </div>
+  <label for="bio_director">Bio</label>
+  <input type="text" name="bio_director" id="bio_director" value="<%= @the_director.bio %>">
 
-  <div>
-    <label for="image_director">Image</label>
-    <input type="text" name="image_director" id="image_director" value="<%= @the_director.image %>">
-  </div>
+  <label for="image_director">Image</label>
+  <input type="text" name="image_director" id="image_director" value="<%= @the_director.image %>">
 
-  <button type="submit">Update director</button>
+  <button>Update director</button>
 </form>
 
-<div>
-  <a href="/delete_director/<%= @the_director.id %>">Delete director</a>
-</div>
+<hr>
+
+<dl>
+  <dt>Name</dt>
+  <dd><%= @the_director.name %></dd>
+
+  <dt>Dob</dt>
+  <dd><%= @the_director.dob %></dd>
+
+  <dt>Bio</dt>
+  <dd><%= @the_director.bio %></dd>
+
+  <dt>Image</dt>
+  <dd><img src="<%= @the_director.image %>" style="width:250px;"></dd>
+</dl>

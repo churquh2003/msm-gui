@@ -1,21 +1,44 @@
+<h1>List of all actors</h1>
+
+<hr>
+
 <form action="/insert_actor" method="post">
   <label for="name_actor">Name</label>
   <input type="text" name="name_actor" id="name_actor">
 
-  <div>
-    <label for="dob_actor">Dob</label>
-    <input type="date" name="dob_actor" id="dob_actor">
-  </div>
+  <label for="dob_actor">Dob</label>
+  <input type="date" name="dob_actor" id="dob_actor">
 
-  <div>
-    <label for="bio_actor">Bio</label>
-    <input type="text" name="bio_actor" id="bio_actor">
-  </div>
+  <label for="bio_actor">Bio</label>
+  <input type="text" name="bio_actor" id="bio_actor">
 
-  <div>
-    <label for="image_actor">Image</label>
-    <input type="text" name="image_actor" id="image_actor">
-  </div>
+  <label for="image_actor">Image</label>
+  <input type="text" name="image_actor" id="image_actor">
 
-  <button type="submit">Create actor</button>
+  <button>Create actor</button>
 </form>
+
+<hr>
+
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Dob</th>
+    <th>Actions</th>
+  </tr>
+  <% @list_of_actors.each do |an_actor| %>
+    <tr>
+      <td><%= an_actor.id %></td>
+      <td><img src="<%= an_actor.image %>" style="width:250px;"></td>
+      <td><%= an_actor.name %></td>
+      <td><%= an_actor.dob %></td>
+      <td>
+        <a href="/actors/<%= an_actor.id %>">Show details</a>
+        <a href="/delete_actor/<%= an_actor.id %>">Delete</a>
+      </td>
+    </tr>
+  <% end %>
+</table>
+

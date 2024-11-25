@@ -1,49 +1,50 @@
 class DirectorsController < ApplicationController
   def index
-    matching_directors = Director.all
-    @list_of_directors = matching_directors.order({ :created_at => :desc })
-
+    @list_of_directors = Director.all.order({ :created_at => :desc })
     render({ :template => "director_templates/index" })
   end
 
-  def create_row
-    i = Director.new
-    i.name = params.fetch("name_director")
-    i.dob = params.fetch("dob_director")
-    i.bio = params.fetch("bio_director")
-    i.image = params.fetch("image_director")
-    i.save
+  def show
+    the_id = params.fetch("path_id")
+    @the_director = Director.where({ :id => the_id }).at(0)
+    render({ :template => "director_templates/show" })
+  end
 
+  def create_row
+    director = Director.new
+    director.name = params.fetch("name_director")
+    director.dob = params.fetch("dob_director")
+    director.bio = params.fetch("bio_director")
+    director.image = params.fetch("image_director")
+    director.save
     redirect_to("/directors")
   end
 
   def update_row
     the_id = params.fetch("path_id")
-    i = Director.where({ :id => the_id }).at(0)
-
-    i.name = params.fetch("name_director")
-    i.dob = params.fetch("dob_director")
-    i.bio = params.fetch("bio_director")
-    i.image = params.fetch("image_director")
-    i.save
-
-    redirect_to("/directors")
-  end
-
-  def show
-    the_id = params.fetch("path_id")
-    matching_directors = Director.where({ :id => the_id })
-    @the_director = matching_directors.at(0)
-
-    render({ :template => "director_templates/show" })
+    director = Director.where({ :id => the_id }).at(0)
+    director.name = params.fetch("name_director")
+    director.dob = params.fetch("dob_director")
+    director.bio = params.fetch("bio_director")
+    director.image = params.fetch("image_director")
+    director.save
+    redirect_to("/directors/#{director.id}")
   end
 
   def destroy
     the_id = params.fetch("path_id")
-    matching_directors = Director.where({ :id => the_id })
-    the_director = matching_directors.at(0)
-    the_director.destroy
-
+    director = Director.where({ :id => the_id }).at(0)
+    director.destroy
     redirect_to("/directors")
+  end
+
+  def youngest
+    @youngest = Director.order(:dob).last
+    render({ :template => "director_templates/youngest" })
+  end
+
+  def eldest
+    @eldest = Director.order(:dob).first
+    render({ :template => "director_templates/eldest" })
   end
 end

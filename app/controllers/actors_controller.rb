@@ -1,49 +1,40 @@
 class ActorsController < ApplicationController
   def index
-    matching_actors = Actor.all
-    @list_of_actors = matching_actors.order({ :created_at => :desc })
-
+    @list_of_actors = Actor.all.order({ :created_at => :desc })
     render({ :template => "actor_templates/index" })
   end
 
-  def create_row
-    q = Actor.new
-    q.name = params.fetch("name_actor")
-    q.dob = params.fetch("dob_actor")
-    q.bio = params.fetch("bio_actor")
-    q.image = params.fetch("image_actor")
-    q.save
+  def show
+    the_id = params.fetch("path_id")
+    @the_actor = Actor.where({ :id => the_id }).at(0)
+    render({ :template => "actor_templates/show" })
+  end
 
+  def create_row
+    actor = Actor.new
+    actor.name = params.fetch("name_actor")
+    actor.dob = params.fetch("dob_actor")
+    actor.bio = params.fetch("bio_actor")
+    actor.image = params.fetch("image_actor")
+    actor.save
     redirect_to("/actors")
   end
 
   def update_row
     the_id = params.fetch("path_id")
-    q = Actor.where({ :id => the_id }).at(0)
-
-    q.name = params.fetch("name_actor")
-    q.dob = params.fetch("dob_actor")
-    q.bio = params.fetch("bio_actor")
-    q.image = params.fetch("image_actor")
-    q.save
-
-    redirect_to("/actors")
-  end
-
-  def show
-    the_id = params.fetch("path_id")
-    matching_actors = Actor.where({ :id => the_id })
-    @the_actor = matching_actors.at(0)
-
-    render({ :template => "actor_templates/show" })
+    actor = Actor.where({ :id => the_id }).at(0)
+    actor.name = params.fetch("name_actor")
+    actor.dob = params.fetch("dob_actor")
+    actor.bio = params.fetch("bio_actor")
+    actor.image = params.fetch("image_actor")
+    actor.save
+    redirect_to("/actors/#{actor.id}")
   end
 
   def destroy
     the_id = params.fetch("path_id")
-    matching_actors = Actor.where({ :id => the_id })
-    the_actor = matching_actors.at(0)
-    the_actor.destroy
-
+    actor = Actor.where({ :id => the_id }).at(0)
+    actor.destroy
     redirect_to("/actors")
   end
 end

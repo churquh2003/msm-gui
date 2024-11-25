@@ -1,12 +1,14 @@
-<form action="/update_movie" method="post">
+<h1>Movie #<%= @the_movie.id %> details</h1>
+
+<a href="/movies">Go back</a>
+
+<hr>
+
+<form action="/update_movie/<%= @the_movie.id %>" method="post">
   <label for="title_movie">Title</label>
   <input type="text" name="title_movie" id="title_movie" value="<%= @the_movie.title %>">
 
-  <div>
-    <label for="year_movie">Year</label>
-    <input type="text" name="year_movie" id="year_movie" value="<%= @the_movie.year %>">
-  </div>
+  <label for="year_movie">Year</label>
+  <input type="text" name="year_movie" id="year_movie" value="<%= @the_movie.year %>">
 
-  <div>
-    <label for="duration_movie">Duration</label>
-    <input type="text" name="
+  <label for="duration_movie">Duration</label>
