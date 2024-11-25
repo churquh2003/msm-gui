@@ -49,4 +49,3 @@ class ActorsController < ApplicationController
     redirect_to("/actors")
   end
 end
-
