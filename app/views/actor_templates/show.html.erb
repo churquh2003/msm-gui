@@ -1,24 +1,6 @@
-<h1>Actor #<%= @the_actor.id %> details</h1>
+<h1>Actor #<%= @the_actor.id %> Details</h1>
 
 <a href="/actors">Go back</a>
-
-<hr>
-
-<form action="/update_actor/<%= @the_actor.id %>" method="post">
-  <label for="name_actor">Name</label>
-  <input type="text" name="name_actor" id="name_actor" value="<%= @the_actor.name %>">
-
-  <label for="dob_actor">Dob</label>
-  <input type="date" name="dob_actor" id="dob_actor" value="<%= @the_actor.dob %>">
-
-  <label for="bio_actor">Bio</label>
-  <input type="text" name="bio_actor" id="bio_actor" value="<%= @the_actor.bio %>">
-
-  <label for="image_actor">Image</label>
-  <input type="text" name="image_actor" id="image_actor" value="<%= @the_actor.image %>">
-
-  <button>Update actor</button>
-</form>
 
 <hr>
 
@@ -35,3 +17,29 @@
   <dt>Image</dt>
   <dd><img src="<%= @the_actor.image %>" style="width:250px;"></dd>
 </dl>
+
+<hr>
+
+<h2>Characters Played</h2>
+<ul>
+  <% @characters.each do |character| %>
+    <li><%= character.name %></li>
+  <% end %>
+</ul>
+
+<hr>
+
+<h2>Directors of Movies</h2>
+<ul>
+  <% @movies_with_directors.each do |movie_info| %>
+    <% if movie_info[:movie] && movie_info[:director] %>
+      <li>
+        <%= movie_info[:director].name %> (from <%= movie_info[:movie].title %>)
+      </li>
+    <% elsif movie_info[:movie] %>
+      <li>
+        Unknown Director (from <%= movie_info[:movie].title %>)
+      </li>
+    <% end %>
+  <% end %>
+</ul>

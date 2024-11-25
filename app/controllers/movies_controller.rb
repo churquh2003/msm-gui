@@ -37,9 +37,11 @@ class MoviesController < ApplicationController
   def show
     the_id = params.fetch("path_id")
     @the_movie = Movie.where({ :id => the_id }).at(0)
-
+    @the_director = Director.where({ :id => @the_movie.director_id }).at(0)
+  
     render({ :template => "movie_templates/show" })
   end
+  
 
   def destroy
     the_id = params.fetch("path_id")

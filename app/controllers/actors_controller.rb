@@ -7,6 +7,17 @@ class ActorsController < ApplicationController
   def show
     the_id = params.fetch("path_id")
     @the_actor = Actor.where({ :id => the_id }).at(0)
+
+    # Fetch characters played by the actor
+    @characters = Character.where({ :actor_id => @the_actor.id })
+
+    # Fetch movies and directors for each character
+    @movies_with_directors = @characters.map do |character|
+      movie = Movie.where({ :id => character.movie_id }).at(0)
+      director = Director.where({ :id => movie.director_id }).at(0) if movie
+      { movie: movie, director: director }
+    end
+
     render({ :template => "actor_templates/show" })
   end
 
@@ -38,3 +49,4 @@ class ActorsController < ApplicationController
     redirect_to("/actors")
   end
 end
+
