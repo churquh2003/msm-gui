@@ -21,6 +21,21 @@ class ActorsController < ApplicationController
     redirect_to("/actors", allow_other_host: true)
   end 
 
+  def update_row 
+    # Get the user's input out of params
+    # Create and save a new row in items table 
+    # send user to / page
+
+    q = Actor.new
+    q.name = params.fetch("name_actor")
+    q.dob = params.fetch("dob_actor")
+    q.bio = params.fetch("bio_actor")
+    q.image = params.fetch("image_actor")
+    q.save
+
+    redirect_to("/actors", allow_other_host: true)
+  end 
+
   def show
     the_id = params.fetch("path_id")
 
