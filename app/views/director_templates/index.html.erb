@@ -1,16 +1,13 @@
-<h1>
-  List of all directors
-</h1>
+<h1>List of all directors</h1>
 
 <hr>
 
 <form action="/insert_director" method="post">
-<label for="zebra"> Name </label>
+<label for="zebra">Name</label>
     <input type="text" name="name_director" id="zebra">
 
-
 <div>
-<label for="giraffe"> Dob </label>
+<label for="giraffe">Dob</label>
     <input type="date" name="dob_director" id="giraffe" >
   </div>
 
@@ -20,11 +17,11 @@
   </div>
 
  <div>
-<label for="elephant"> Image </label>
+<label for="elephant">Image</label>
     <input type="text" name="image_director" id="elephant" >
   </div>
 
-<button> Create director </button>
+<button>Create director</button>
 
 </form>
 
@@ -72,9 +69,7 @@
     </td>
 
     <td>
-      <a href="/directors/<%= director.id %>">
-        Show details
-      </a>
+      <a href="/directors/<%= director.id %>">Show details</a>
     </td>
   </tr>
   <% end %>
