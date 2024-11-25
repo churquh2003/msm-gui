@@ -16,10 +16,10 @@ Rails.application.routes.draw do
   get "/directors/eldest", { :controller => "directors", :action => "eldest" }
 
   # Movies
-  get "/movies", { :controller => "movies", :action => "index" }
-  get "/movies/:path_id", { :controller => "movies", :action => "show" }
-  post "/insert_movie", { :controller => "movies", :action => "create_row" }
-  post "/update_movie/:path_id", { :controller => "movies", :action => "update_row" }
-  get "/delete_movie/:path_id", { :controller => "movies", :action => "destroy" }
-end
-
+    get "/movies", { :controller => "movies", :action => "index" }
+    get "/movies/:path_id", { :controller => "movies", :action => "show" }
+    post "/insert_movie", { :controller => "movies", :action => "create_row" }
+    post "/update_movie/:path_id", { :controller => "movies", :action => "update_row" }
+    get "/delete_movie/:path_id", { :controller => "movies", :action => "destroy" }
+  end
+  
