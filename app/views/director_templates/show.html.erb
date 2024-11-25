@@ -6,6 +6,41 @@
   Go back
 </a>
 
+<div>
+<a href="/actors">
+  Delete director
+</a>
+</div>
+
+<hr>
+
+
+<form action="/update_director" method="post">
+<label for="zebra"> Name </label>
+    <input type="text" name="director_director" id="zebra" value="<%= @the_director.name %>">
+
+
+<div>
+<label for="giraffe"> Dob </label>
+ 
+    <input type="date" name="dob_director" id="giraffe" value="<%= @the_director.dob %>">
+  </div>
+
+ <div>
+<label for="tiger"> Bio </label>
+    <input type="text" name="bio_director" id="tiger" value="<%= @the_director.bio %>" style="width: 200px; height: 60px;">
+  </div>
+
+ <div>
+<label for="elephant"> Image </label>
+    <input type="text" name="image_director" id="elephant" value="<%= @the_director.image %>" >
+  </div>
+
+<button> Update </button>
+
+</form>
+
+
 <hr>
 
 <dl>

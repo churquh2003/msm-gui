@@ -6,6 +6,49 @@
   Go back
 </a>
 
+<div>
+<a href="/movies">
+  Delete movie
+</a>
+</div>
+
+<form action="/update_movie" method="post">
+<label for="zebra"> Title </label>
+
+    <input type="text" name="title_movie" id="zebra" value="<%= @the_movie.title %>">
+
+
+<div>
+<label for="giraffe"> Year </label>
+ 
+    <input type="text" name="year_movie" id="giraffe" value="<%= @the_movie.year %>" >
+  </div>
+
+ <div>
+<label for="tiger"> Duration </label>
+    <input type="text" name="duration_movie" id="tiger" value="<%= @the_movie.duration %>" >
+  </div>
+
+ <div>
+<label for="elephant"> Description </label>
+    <input type="text" name="description_movie" id="elephant" value="<%= @the_movie.description %>">
+  </div>
+
+   <div>
+<label for="bird"> Image </label>
+    <input type="text" name="image_movie" id="bird" value="<%= @the_movie.image %>">
+  </div>
+
+ <div>
+<label for="koala"> Director ID </label>
+    <input type="text" name="director_id" id="koala" value="<%= @the_director_id %>">
+  </div>
+
+
+<button> Update movie </button>
+
+</form>
+
 <hr>
 
 <dl>
