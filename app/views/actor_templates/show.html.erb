@@ -14,9 +14,8 @@
 
 <hr>
 
-
-<form action="/update_actor/<% @the_actor.id %>" method="post">
-<label for="image_actor"> Name </label>
+<form action="/update_actor/<%= @the_actor.id %>" method="post">
+  <label for="image_actor"> Name </label>
     <input type="text" name="name_actor" id="image_actor" value="<%= @the_actor.name %>">
 
 <div>
