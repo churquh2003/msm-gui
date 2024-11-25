@@ -7,7 +7,10 @@ class DirectorsController < ApplicationController
   def show
     the_id = params.fetch("path_id")
     @the_director = Director.where({ :id => the_id }).at(0)
+
+    # Fetch movies directed by the director
     @movies = Movie.where({ :director_id => @the_director.id })
+
     render({ :template => "director_templates/show" })
   end
 
@@ -37,15 +40,5 @@ class DirectorsController < ApplicationController
     director = Director.where({ :id => the_id }).at(0)
     director.destroy
     redirect_to("/directors")
-  end
-
-  def youngest
-    @youngest = Director.order(:dob).last
-    render({ :template => "director_templates/youngest" })
-  end
-
-  def eldest
-    @eldest = Director.order(:dob).first
-    render({ :template => "director_templates/eldest" })
   end
 end
