@@ -6,6 +6,23 @@ class MoviesController < ApplicationController
     render({ :template => "movie_templates/index" })
   end
 
+  def create_row 
+    # Get the user's input out of params
+    # Create and save a new row in items table 
+    # send user to / page
+
+    m = Movie.new
+    m.title = params.fetch("title_movie")
+    m.year = params.fetch("year_movie")
+    m.duration = params.fetch("duration_movie")
+    m.description = params.fetch("description_movie")
+    m.image = params.fetch("image_movie")
+    m.id = params.fetch("director_id")
+    m.save
+
+    redirect_to("/movies", allow_other_host: true)
+  end 
+
   def show
     the_id = params.fetch("path_id")
 
