@@ -1,157 +1,25 @@
-<h1>
-  Actor #<%= @the_actor.id %> details
-</h1>
-
-<a href="/actors">
-  Go back
-</a>
-
-<div>
-<a href="/actors">
-  Delete actor
-</a>
-</div>
-
-<hr>
-
-
 <form action="/update_actor" method="post">
-<label for="zebra"> Name </label>
-    <input type="text" name="name_actor" id="zebra" value="<%= @the_actor.name %>">
+  <label for="name_actor">Name</label>
+  <input type="text" name="name_actor" id="name_actor" value="<%= @the_actor.name %>">
 
-
-<div>
-<label for="giraffe"> Dob </label>
- 
-    <input type="date" name="dob_actor" id="giraffe" value="<%= @the_actor.dob %>">
+  <div>
+    <label for="dob_actor">Dob</label>
+    <input type="date" name="dob_actor" id="dob_actor" value="<%= @the_actor.dob %>">
   </div>
 
- <div>
-<label for="tiger"> Bio </label>
-    <input type="text" name="bio_actor" id="tiger" value="<%= @the_actor.bio %>" style="width: 200px; height: 60px;">
+  <div>
+    <label for="bio_actor">Bio</label>
+    <input type="text" name="bio_actor" id="bio_actor" value="<%= @the_actor.bio %>">
   </div>
 
- <div>
-<label for="elephant"> Image </label>
-    <input type="text" name="image_actor" id="elephant" value="<%= @the_actor.image %>" >
+  <div>
+    <label for="image_actor">Image</label>
+    <input type="text" name="image_actor" id="image_actor" value="<%= @the_actor.image %>">
   </div>
 
-<button> Update </button>
-
+  <button type="submit">Update actor</button>
 </form>
 
-<hr>
-
-
-<dl>
-  <dt>
-    Name
-  </dt>
-  <dd>
-    <%= @the_actor.name %>
-  </dd>
-
-  <dt>
-    Dob
-  </dt>
-  <dd>
-    <%= @the_actor.dob %>
-  </dd>
-
-  <dt>
-    Bio
-  </dt>
-  <dd>
-    <%= @the_actor.bio %>
-  </dd>
-
-  <dt>
-    Image
-  </dt>
-  <dd>
-    <img src="<%= @the_actor.image %>" style="width:250px;">
-  </dd>
-
-  <dt>
-    Created at
-  </dt>
-  <dd>
-    <%= @the_actor.created_at %>
-  </dd>
-
-  <dt>
-    Updated at
-  </dt>
-  <dd>
-    <%= @the_actor.updated_at %>
-  </dd>
-</dl>
-
-<hr>
-
-<h2>Filmography</h2>
-
-<table border="1">
-  <tr>
-    <th>
-      Title
-    </th>
-
-    <th>
-      Year
-    </th>
-
-    <th>
-      Director
-    </th>
-
-    <th>
-      Character name
-    </th>
-
-    <th>
-    </th>
-  </tr>
-
-  <% a_id = @the_actor.id %>
-
-  <% matching_characters = Character.where({ :actor_id => a_id }) %>
-
-  <% matching_characters.each do |a_character| %>
-    <% m_id = a_character.movie_id %>
-
-    <% matching_movies = Movie.where({ :id => m_id }) %>
-
-    <% the_movie = matching_movies.at(0) %>
-
-    <tr>
-      <td>
-        <%= the_movie.title %>
-      </td>
-
-      <td>
-        <%= the_movie.year %>
-      </td>
-
-      <td>
-        <% d_id = the_movie.director_id %>
-        
-        <% matching_directors = Director.where({ :id => d_id }) %>
-        
-        <% the_director = matching_directors.at(0) %>
-
-        <%= the_director.name %>
-      </td>
-
-      <td>
-        <%= a_character.name %>
-      </td>
-
-      <td>
-        <a href="/movies/<%= the_movie.id %>">
-          Show details
-        </a>
-      </td>
-    </tr>
-  <% end %>
-</table>
+<div>
+  <a href="/delete_actor/<%= @the_actor.id %>">Delete actor</a>
+</div>
