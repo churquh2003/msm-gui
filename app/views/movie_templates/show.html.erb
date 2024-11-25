@@ -1,118 +1,12 @@
-<h1>
-  Movie #<%= @the_movie.id %> details
-</h1>
-
-<a href="/movies">
-  Go back
-</a>
-
-<div>
-<a href="/movies">
-  Delete movie
-</a>
-</div>
-
 <form action="/update_movie" method="post">
-<label for="zebra"> Title </label>
+  <label for="title_movie">Title</label>
+  <input type="text" name="title_movie" id="title_movie" value="<%= @the_movie.title %>">
 
-    <input type="text" name="title_movie" id="zebra" value="<%= @the_movie.title %>">
-
-
-<div>
-<label for="giraffe"> Year </label>
- 
-    <input type="text" name="year_movie" id="giraffe" value="<%= @the_movie.year %>" >
+  <div>
+    <label for="year_movie">Year</label>
+    <input type="text" name="year_movie" id="year_movie" value="<%= @the_movie.year %>">
   </div>
 
- <div>
-<label for="tiger"> Duration </label>
-    <input type="text" name="duration_movie" id="tiger" value="<%= @the_movie.duration %>" >
-  </div>
-
- <div>
-<label for="elephant"> Description </label>
-    <input type="text" name="description_movie" id="elephant" value="<%= @the_movie.description %>">
-  </div>
-
-   <div>
-<label for="bird"> Image </label>
-    <input type="text" name="image_movie" id="bird" value="<%= @the_movie.image %>">
-  </div>
-
- <div>
-<label for="koala"> Director ID </label>
-    <input type="text" name="director_id" id="koala" value="<%= @the_director_id %>">
-  </div>
-
-
-<button> Update movie </button>
-
-</form>
-
-<hr>
-
-<dl>
-  <dt>
-    Title
-  </dt>
-  <dd>
-    <%= @the_movie.title %>
-  </dd>
-
-  <dt>
-    Year
-  </dt>
-  <dd>
-    <%= @the_movie.year %>
-  </dd>
-
-  <dt>
-    Duration
-  </dt>
-  <dd>
-    <%= @the_movie.duration %>
-  </dd>
-
-  <dt>
-    Description
-  </dt>
-  <dd>
-    <%= @the_movie.description %>
-  </dd>
-
-  <dt>
-    Image
-  </dt>
-  <dd>
-    <img src="<%= @the_movie.image %>" style="width:250px;">
-  </dd>
-
-  <dt>
-    Director
-  </dt>
-  <dd>
-    <% dir_id = @the_movie.director_id %>
-    
-    <% matching_directors = Director.where({ :id => dir_id }) %>
-    
-    <% the_director = matching_directors.at(0) %>
-
-    <%= the_director.name %>
-  </dd>
-
-  <dt>
-    Created at
-  </dt>
-  <dd>
-    <%= @the_movie.created_at %>
-  </dd>
-
-  <dt>
-    Updated at
-  </dt>
-  <dd>
-    <%= @the_movie.updated_at %>
-  </dd>
-</dl>
-
-<hr>
+  <div>
+    <label for="duration_movie">Duration</label>
+    <input type="text" name="
