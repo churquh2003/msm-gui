@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   post "/insert_director", { :controller => "directors", :action => "create_row" }
   post "/update_director/:path_id", { :controller => "directors", :action => "update_row" }
   get "/delete_director/:path_id", { :controller => "directors", :action => "destroy" }
-  get "/directors/youngest", { :controller => "directors", :action => "youngest" }
-  get "/directors/eldest", { :controller => "directors", :action => "eldest" }
+  get "/directors/youngest", { :controller => "directors", :action => "max_dob" }
+  get "/directors/eldest", { :controller => "directors", :action => "min_dob" }
 
   # Movies
     get "/movies", { :controller => "movies", :action => "index" }
