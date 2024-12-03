@@ -42,40 +42,29 @@ class DirectorsController < ApplicationController
     director.destroy
     redirect_to("/directors")
   end
-
-  def min_dob
-    directors_by_dob_asc = Director.
-      all.
-      where.not({ :dob => nil }).
-      order({ :dob => :asc })
-    
-    @eldest = directors_by_dob_asc.at(0)
-  
-    if @eldest.nil?
-      @eldest = Director.new(name: "No directors found", dob: nil)
-    end
-  
-    render({ :template => "director_templates/eldest" })
-  end
   
   def max_dob
-    directors_by_dob_desc = Director.
-      all.
-      where.not({ :dob => nil }).
-      order({ :dob => :desc })
+    @youngest = Director.
+      where.not(dob: nil).
+      order(dob: :desc).
+      first
 
-    @youngest = directors_by_dob_desc.at(0)
+    if @youngest.nil?
+      @youngest = Director.new(name: "No youngest director found", dob: nil)
+    end
 
     render({ :template => "director_templates/youngest" })
   end
 
   def min_dob
-    directors_by_dob_asc = Director.
-      all.
-      where.not({ :dob => nil }).
-      order({ :dob => :asc })
-      
-    @eldest = directors_by_dob_asc.at(0)
+    @eldest = Director.
+      where.not(dob: nil).
+      order(dob: :asc).
+      first
+
+    if @eldest.nil?
+      @eldest = Director.new(name: "No eldest director found", dob: nil)
+    end
 
     render({ :template => "director_templates/eldest" })
   end
