@@ -1,15 +1,16 @@
 class DirectorsController < ApplicationController
   def index
-    @list_of_directors = Director.all.order({ :created_at => :desc })
+    matching_directors = Director.all
+    @list_of_directors = matching_directors.order({ :created_at => :desc })
+
     render({ :template => "director_templates/index" })
   end
 
   def show
     the_id = params.fetch("path_id")
-    @the_director = Director.where({ :id => the_id }).at(0)
 
-    # Fetch movies directed by the director
-    @movies = Movie.where({ :director_id => @the_director.id })
+    matching_directors = Director.where({ :id => the_id })
+    @the_director = matching_directors.at(0)
 
     render({ :template => "director_templates/show" })
   end
@@ -40,5 +41,42 @@ class DirectorsController < ApplicationController
     director = Director.where({ :id => the_id }).at(0)
     director.destroy
     redirect_to("/directors")
+  end
+
+  def min_dob
+    directors_by_dob_asc = Director.
+      all.
+      where.not({ :dob => nil }).
+      order({ :dob => :asc })
+    
+    @eldest = directors_by_dob_asc.at(0)
+  
+    if @eldest.nil?
+      @eldest = Director.new(name: "No directors found", dob: nil)
+    end
+  
+    render({ :template => "director_templates/eldest" })
+  end
+  
+  def max_dob
+    directors_by_dob_desc = Director.
+      all.
+      where.not({ :dob => nil }).
+      order({ :dob => :desc })
+
+    @youngest = directors_by_dob_desc.at(0)
+
+    render({ :template => "director_templates/youngest" })
+  end
+
+  def min_dob
+    directors_by_dob_asc = Director.
+      all.
+      where.not({ :dob => nil }).
+      order({ :dob => :asc })
+      
+    @eldest = directors_by_dob_asc.at(0)
+
+    render({ :template => "director_templates/eldest" })
   end
 end

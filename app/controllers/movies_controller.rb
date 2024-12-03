@@ -8,31 +8,13 @@ class MoviesController < ApplicationController
 
   def create_row
     m = Movie.new
-    m.title = params.fetch("title_movie")
-    m.year = params.fetch("year_movie")
-    m.duration = params.fetch("duration_movie")
-    m.description = params.fetch("description_movie")
-    m.image = params.fetch("image_movie")
-    m.director_id = params.fetch("director_id")
-    m.save
-
-    redirect_to("/movies")
-  end
-
-  def update_row
-    the_id = params.fetch("path_id")
-    m = Movie.where({ :id => the_id }).at(0)
-
-    m.title = params.fetch("title_movie")
-    m.year = params.fetch("year_movie")
-    m.duration = params.fetch("duration_movie")
-    m.description = params.fetch("description_movie")
-    m.image = params.fetch("image_movie")
-    m.director_id = params.fetch("director_id")
-    m.save
-
-    redirect_to("/movies/#{m.id}")
-  end
+    m.title = params.fetch("title_movie") # Fetch title from the form
+    m.director_id = params.fetch("director_id") # Fetch director ID from the form
+    m.save # Save the new movie record
+  
+    redirect_to("/movies") # Redirect to movies index
+  end  
+  
 
   def show
     the_id = params.fetch("path_id")
@@ -44,22 +26,25 @@ class MoviesController < ApplicationController
   
 
   def destroy
-    the_id = params.fetch("path_id")
-    m = Movie.where({ :id => the_id }).at(0)
-    m.destroy
-
+    the_id = params.fetch("an_id")
+    matching_records = Movie.where({ :id => the_id })
+    the_movie = matching_records.at(0)
+    the_movie.destroy
     redirect_to("/movies")
   end
 
-  def update_row
-    the_id = params.fetch("path_id")
-    movie = Movie.where({ :id => the_id }).at(0)
-    movie.title = params.fetch("title_movie")
-    movie.year = params.fetch("year_movie")
-    movie.duration = params.fetch("duration_movie")
-    movie.description = params.fetch("description_movie")
-    movie.image = params.fetch("image_movie")
-    movie.save
-    redirect_to("/movies/#{movie.id}")
+  def edit
+    m_id = params.fetch("the_id")
+    matching_records = Movie.where({ :id => m_id})
+    the_movie = matching_records.at(0)
+    the_movie.title = params.fetch("the_title")
+    the_movie.year = params.fetch("the_year")
+    the_movie.duration = params.fetch("the_duration")
+    the_movie.description = params.fetch("the_description")
+    the_movie.image = params.fetch("the_image")
+    the_movie.director_id = params.fetch("the_director_id")
+     
+     the_movie.save
+     redirect_to("/movies/#{the_movie.id}")
   end
 end

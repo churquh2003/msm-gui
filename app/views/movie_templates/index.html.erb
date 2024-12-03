@@ -3,35 +3,15 @@
 <hr>
 
 <form action="/insert_movie" method="post">
-  <label for="zebra">Title</label>
-  <input type="text" name="title_movie" id="zebra">
-
   <div>
-    <label for="giraffe">Year</label>
-    <input type="text" name="year_movie" id="giraffe">
+    <label for="title_field">Title</label>
+    <input id="title_field" type="text" name="title_movie">
   </div>
-
   <div>
-    <label for="tiger">Duration</label>
-    <input type="text" name="duration_movie" id="tiger">
+    <label for="director_id_field">Director ID</label>
+    <input id="director_id_field" type="text" name="director_id">
   </div>
-
-  <div>
-    <label for="elephant">Description</label>
-    <input type="text" name="description_movie" id="elephant">
-  </div>
-
-  <div>
-    <label for="bird">Image</label>
-    <input type="text" name="image_movie" id="bird">
-  </div>
-
-  <div>
-    <label for="koala">Director ID</label>
-    <input type="text" name="director_id" id="koala">
-  </div>
-
-  <button>Create movie</button>
+  <button type="submit">Create movie</button>
 </form>
 
 <hr>
@@ -63,4 +43,3 @@
     </tr>
   <% end %>
 </table>
-
